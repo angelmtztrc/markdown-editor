@@ -18,9 +18,9 @@
     "baseUrl": ".",
     "paths": {
       "@assets": ["src/assets"],
-      "@atoms": ["src/atoms/index"],
-      "@molecules": ["src/molecules/index"],
-      "@organisms": ["src/organisms/index"],
+      "@atoms": ["src/components/atoms/index"],
+      "@molecules": ["src/components/molecules/index"],
+      "@organisms": ["src/components/organisms/index"],
       "@hooks": ["src/hooks/index"],
       "@store": ["src/store/index"],
       "@store/*": ["src/store/*"],
