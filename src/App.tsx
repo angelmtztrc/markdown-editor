@@ -1,5 +1,6 @@
+import { useRef } from 'react';
+
 import { Editor, Header, Preview } from '@molecules';
-import { useEffect, useRef } from 'react';
 
 const App = () => {
   const headerRef = useRef<HTMLElement>(null);

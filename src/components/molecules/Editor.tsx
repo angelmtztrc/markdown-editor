@@ -8,11 +8,29 @@ import CodeMirror from '@uiw/react-codemirror';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { languages } from '@codemirror/language-data';
 
+import { useRootDispatch, useRootSelector } from '@hooks';
+
+import { setDocumentContent } from '@store/slices/root.slice';
+import { useDebounce } from 'react-use';
+
 const Editor = ({ headerRef }: EditorProps) => {
+  const dispatch = useRootDispatch();
+  const content = useRootSelector(state => state.document.content);
+
   const [initialWidth, setInitialWidth] = useState(500);
   const [minWidth, setMinWidth] = useState(200);
   const [maxWidth, setMaxWidth] = useState(500);
   const [maxHeight, setMaxHeight] = useState('100%');
+
+  const [value, setValue] = useState('Hello, World');
+
+  useDebounce(
+    () => {
+      dispatch(setDocumentContent(value));
+    },
+    500,
+    [value]
+  );
 
   useEffect(() => {
     const header = headerRef.current;
@@ -27,6 +45,14 @@ const Editor = ({ headerRef }: EditorProps) => {
     }
   }, [headerRef]);
 
+  useEffect(() => {
+    setValue(content);
+  }, []);
+
+  const handleChange = (value: string) => {
+    setValue(value);
+  };
+
   return headerRef.current ? (
     <ResizePanel
       initialWidth={initialWidth}
@@ -38,7 +64,8 @@ const Editor = ({ headerRef }: EditorProps) => {
           className="h-full max-h-screen bg-eerie-black"
           theme={'dark'}
           height={maxHeight}
-          value="# Hello World"
+          value={content}
+          onChange={handleChange}
           extensions={[
             markdown({ base: markdownLanguage, codeLanguages: languages })
           ]}

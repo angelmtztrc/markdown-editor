@@ -13,6 +13,7 @@ export default defineConfig({
       '@molecules': path.resolve(__dirname, './src/components/molecules'),
       '@organisms': path.resolve(__dirname, './src/components/organisms'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@interfaces': path.resolve(__dirname, './src/interfaces'),
       '@store': path.resolve(__dirname, './src/store'),
       '@styles': path.resolve(__dirname, './src/styles')
     }
