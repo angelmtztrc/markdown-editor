@@ -3,13 +3,11 @@ import { useRef } from 'react';
 import { Editor, Header, Preview } from '@molecules';
 
 const App = () => {
-  const headerRef = useRef<HTMLElement>(null);
-
   return (
     <div className="flex h-screen max-h-screen flex-col">
-      <Header ref={headerRef} />
-      <div className="flex flex-1 flex-row flex-nowrap bg-eerie-black">
-        <Editor headerRef={headerRef} />
+      <Header />
+      <div className="flex w-full flex-1 overflow-hidden bg-eerie-black">
+        <Editor />
         <Preview />
       </div>
     </div>
